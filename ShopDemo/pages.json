@@ -1,0 +1,63 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style":{
+				"navigationBarTitleText":"首页"
+			}
+		},
+		{
+			"path":"pages/Cart/Cart",
+			"style":{
+				"navigationBarTitleText":"购物车"
+			}
+		},
+		{
+			"path":"pages/Menber/Menber",
+			"style":{
+				"navigationBarTitleText":"我的"
+			}
+		},
+		{
+			"path":"pages/News/News",
+			"style":{
+				"navigationBarTitleText":"资讯"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "商城demo",
+		"navigationBarBackgroundColor": "#b50e03",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar":{
+		"selectedColor":"#b50e03",
+		"list":[
+			{
+				"text":"首页",
+				"pagePath":"pages/index/index",
+				"iconPath":"static/icon/首页.png",
+				"selectedIconPath":"static/icon/首页%20(1).png"
+			},
+			{
+				"text":"资讯",
+				"pagePath":"pages/News/News",
+				"iconPath":"static/icon/资讯.png",
+				"selectedIconPath":"static/icon/资讯%20(1).png"
+			},
+			{
+				"text":"购物车",
+				"pagePath":"pages/Cart/Cart",
+				"iconPath":"static/icon/购物车.png",
+				"selectedIconPath":"static/icon/购物车%20(1).png"
+			},
+			{
+				"text":"我的",
+				"pagePath":"pages/Menber/Menber",
+				"iconPath":"static/icon/我的.png",
+				"selectedIconPath":"static/icon/我的%20(1).png"
+			}
+		]
+	}
+}
