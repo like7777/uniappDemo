@@ -1,22 +1,15 @@
 <template>
-	<view>
-		<scroll-view  :scroll-top="scrollTop" :scroll-left="scrollLeft" scroll-y="true" class="scroll-Y" >
-				<view  class="scroll-view-item " @click="options(1)" :class="isActive == 1 ? 'active' : ''">家居生活</view>
-				<view  class="scroll-view-item " @click="options(2)" :class="isActive == 2 ? 'active' : ''">摄影设计</view>
-				<view  class="scroll-view-item " @click="options(3)" :class="isActive == 3 ? 'active' : ''">明星美女</view>
-				<view  class="scroll-view-item " @click="options(4)" :class="isActive == 4 ? 'active' : ''">空间设计</view>
-				<view  class="scroll-view-item " @click="options(5)" :class="isActive == 5 ? 'active' : ''">户型装饰</view>
-				<view  class="scroll-view-item " @click="options(6)" :class="isActive == 6 ? 'active' : ''">广告摄影</view>
-				<view  class="scroll-view-item " @click="options(7)" :class="isActive == 7 ? 'active': ''">摄影学习</view>
-				<view  class="scroll-view-item " @click="options(8)" :class="isActive == 8 ? 'active' : ''">摄影器材</view>
-				<view  class="scroll-view-item " @click="options(9)" :class="isActive == 9 ? 'active' : ''">明星写真</view>
-				<view  class="scroll-view-item " @click="options(10)" :class="isActive == 10 ? 'active' : ''">清纯甜美</view>
-				<view  class="scroll-view-item " @click="options(11)" :class="isActive == 11 ? 'active' : ''">一二三四</view>
-				<view  class="scroll-view-item " @click="options(12)" :class="isActive == 12 ? 'active' : ''">我不知道</view>
+	<view class="pics">
+		<scroll-view  :scroll-top="0" :scroll-left="0" scroll-y="true" class="left" >
+			<view  class="scroll-view-item" :class="isActive == item.cat_id ? 'active' : ''"
+				@click="options(item.cat_id)"
+				v-for="(item,index) in menu" :key="index">
+				{{item.cat_name}}
+			</view>
 		</scroll-view>
-		<view class="">
-			1234
-		</view>
+		<scroll-view class="right" scroll-y>
+			
+		</scroll-view>
 	</view>
 </template>
 
@@ -25,21 +18,41 @@
 		data() {
 			return {
 				isActive:1,
-				scrollTop:100,
-				scrollLeft:100
-			}
+				menu:[],
+            }
+		},
+		onLoad() {
+			this.getLists() 
 		},
 		methods: {
 			options(e){
 				this.isActive = e
+			},
+			getLists(){
+				uni.request({
+					url:"https://api-hmugo-web.itheima.net/api/public/v1/categories",
+					success : res => {
+						this.menu = res.data.message
+						console.log(this.menu)
+					}
+				})
 			}
 		}
 	}
 </script>
 
 <style>
-	.scroll-Y {
+	page {
+		height: 100%;
+	}
+	.pics {
+		height: 100%;
+		display: flex;
+	}
+	
+	.left {
 		width: 100px;
+		height: 100%;
 		display: inline-block;
 	}
 	
