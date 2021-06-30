@@ -23,8 +23,14 @@
 			"style":{
 				"navigationBarTitleText":"资讯"
 			}
+		},
+		{
+			"path" : "pages/Community/Community",
+			"style" : {
+				"navigationBarTitleText":"社区图片"
+			}
 		}
-	],
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "商城demo",
