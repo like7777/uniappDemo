@@ -42,6 +42,17 @@
 		<view class="recommended">
 			<text>推荐商品</text>
 		</view>
+		<view class="goods">
+			<view class="goodsList" v-for="(item,index) in list" :key="index" @click="details(item.goods_id)">
+				<image :src="item.goods_small_logo"></image>
+				<view class="goodsPrice">
+					￥{{item.goods_price}}
+				</view>
+				<view class="goodsName">
+					{{item.goods_name}}
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -49,11 +60,13 @@
 	export default {
 		data() {
 			return {
-				swipers:[]
+				swipers:[],
+				list:[]
 			}
 		},
 		onLoad() {
 			this.getSwiper()
+			this.getLists()
 		},
 		methods: {
 			getSwiper(){
@@ -71,6 +84,34 @@
 					}
 				})
 			},
+			getLists(){
+				console.log(2)
+				uni.request({
+					url : "https://api-hmugo-web.itheima.net/api/public/v1/goods/search",
+					success : (res) => {
+						console.log(res)
+						if(res.data.meta.msg == "获取成功"){
+							this.list = res.data.message.goods
+						}
+						console.log(this.list)
+					}
+				})
+			},
+			details(e){
+				console.log(e)
+				uni.navigateTo({
+					url : '../Community/Community'
+				})
+				// uni.request({
+				// 	url : "https://api-hmugo-web.itheima.net/api/public/v1/goods/detail",
+				// 	data : {
+				// 		goods_id : e
+				// 	},
+				// 	success : (res) => {
+				// 		console.log(res)
+				// 	}
+				// })
+			}
 		}
 	}
 </script>
@@ -91,6 +132,7 @@
 		align-content: stretch;
 		justify-content: space-evenly;
 		align-items: baseline;
+		margin-top: 10px;
 	}
 	
 	.tips image {
@@ -130,5 +172,33 @@
 		display: block;
 		text-align: center;
 		letter-spacing: 20px;
+	}
+	
+	.goods {
+		background: #ccc;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+	}
+	
+	.goodsList img {
+		width: 150px;
+		height: 150px;
+	}
+	
+	.goodsList {
+		background: #fff;
+		width: 48%;
+		margin-top: 5px;
+	}
+	
+	.goodsName {
+		font-size: 14px;
+		padding: 4px 10px;
+	}
+	
+	.goodsPrice {
+		color: orange;
 	}
 </style>

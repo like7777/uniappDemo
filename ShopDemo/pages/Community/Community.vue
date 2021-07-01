@@ -8,7 +8,9 @@
 			</view>
 		</scroll-view>
 		<scroll-view class="right" scroll-y>
-			
+			<view class="" >
+				1
+			</view>
 		</scroll-view>
 	</view>
 </template>
@@ -54,6 +56,7 @@
 		width: 100px;
 		height: 100%;
 		display: inline-block;
+		border-right: 1px solid #ccc;
 	}
 	
 	.scroll-view-item {

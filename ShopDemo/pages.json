@@ -30,6 +30,10 @@
 				"navigationBarTitleText":"社区图片"
 			}
 		}
+        ,{
+            "path" : "pages/details/details",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
